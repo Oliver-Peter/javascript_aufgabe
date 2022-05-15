@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+
+    <ul id="liste">
+      <li>Bart Simpson</li>
+      <li>Homer Simpson</li>
+      <li>Lisa Simpson</li>
+      <li>Marge Simpson</li>
+      <li>Maggie Simpson</li>
+      <li>Hugo Simpson</li>
+    </ul>
+
+
+    <script>
+      /* Aufgabe:
+       * Entferne per Javascript das erste und letzte Element der Liste.
+
+       Erwartetes Resultat:
+       <ul id="liste">
+          <li>Homer Simpson</li>
+          <li>Lisa Simpson</li>
+          <li>Marge Simpson</li>
+          <li>Maggie Simpson</li>
+       </ul>
+      */
+
+      let liste = document.querySelector('#liste');
+
+      
+
+      //Variante 1
+      /* liste.removeChild(liste.children[0]);
+      liste.removeChild(liste.children[4]); */
+
+      //Variante 2
+      /* liste.removeChild(liste.firstElementChild);
+      liste.removeChild(liste.lastElementChild); */
+
+       //Umäpröblä
+      //Möglichkeit alle listenElemente zu erhalten und mittel for-of Schlaufe zu löschen.
+
+      let listenElemente = document.querySelectorAll('li');
+
+      for (li of listenElemente) {
+        li.parentNode.removeChild(li);
+      }
+      
+
+    </script>
+  </body>
+</html>
+
+

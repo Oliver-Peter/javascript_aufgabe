@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <script>
+      /* Aufgabe:
+       * a) Gib das Array von Namen aufsteigend Sortiert aus.
+          (Bart, Homer, ....)
+       * b) Gib das Array von Namen absteigend sortiert aus.
+          (Marge, Maggie...)
+       */
+
+       var simpsons = ["Marge", "Maggie", "Bart", "Homer", "Lisa", "Hugo"];
+
+       //a)
+       console.log(simpsons.sort());
+       //b)
+       let test = simpsons.sort((name1, name2) => {
+         if(name1 > name2) {
+           return -1;
+
+         } else {
+           return 1;
+         }});
+
+         console.log(test);
+
+
+    </script>
+  </body>
+</html>

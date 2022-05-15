@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <script>
+      /* Aufgabe:
+       * Bau eine Funktion, genannt durchschnitt() welche beliebig viele Parameter hat
+       * und der durchschnitt aller übergebenen Zahlen zurückgibt
+         Um es zu testen, gib den Rückgabewert wie unten angezeigt auf der Konsole aus.
+       * Beispiel: console.log(durchschnitt(1, 2, 3, 4)) => 2.5
+       * Beispiel: console.log(durchschnitt(1, 2, 3, 4, 8, 9, 10, 11)) => 6
+       */
+
+   //Function welche ein Array mit Zahlen befüllt
+
+   let summe = 0;
+   let zahlen = [];
+
+   function durchschnitt() {
+     for ( let i = 0; i < arguments.length; i++) {
+        zahlen.push(arguments[i]);
+     }
+     for (zahl of zahlen) {
+       summe += zahl;
+     }
+     return summe / zahlen.length;
+   
+   }
+
+   console.log(durchschnitt(10, 20 ,30 ,40));
+
+   //Nochmals lösen ohne for-of-Schlaufe
+
+  
+
+ 
+
+
+
+
+
+    </script>
+  </body>
+</html>
+
+
