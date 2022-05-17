@@ -13,11 +13,14 @@
 
   <h1>Rechner 5000</h1>
 
-  <label>Zahl 1</label><input type="text" id="zahl1">
+  <label>Zahl 1</label>
+  <input type="text" id="zahl1">
   <br>
-  <label>Zahl 2</label><input type="text" id="zahl2">
+  <label>Zahl 2</label>
+  <input type="text" id="zahl2">
   <br>
-  <label>Ergebnis</label><input disabled type="text" id="ergebnis">
+  <label>Ergebnis</label>
+  <input disabled type="text" id="ergebnis">
   <br>
   <button id="addieren">addieren</button>
   <button id="subtrahieren">subtrahieren</button>
@@ -38,6 +41,52 @@
 
          Das Ergebnis soll in das Element mit der ID ergebnis gespeichert werden
       */
+
+      //let number1 = parseInt(document.querySelector('#zahl1').value);
+      //let number2 = parseInt(document.querySelector('#zahl2').value);
+
+      let input1 = document.querySelector('#zahl1');
+      let input2 = document.querySelector('#zahl2');
+      let result = document.querySelector('#ergebnis');
+
+      let add = document.querySelector('#addieren');
+      let sub = document.querySelector('#subtrahieren');
+      let multi = document.querySelector('#multiplizieren');
+      let divide = document.querySelector('#dividieren');
+
+  
+
+      add.addEventListener('click', () => {
+        let number1 = parseInt(input1.value);
+        let number2 = parseInt(input2.value);
+        
+        result.value = number1 + number2;
+        
+      });
+
+      sub.addEventListener('click', () => {
+        let number1 = parseInt(input1.value);
+        let number2 = parseInt(input2.value);
+        
+        result.value = number1 - number2;
+        
+      });
+      multi.addEventListener('click', () => {
+        let number1 = parseInt(input1.value);
+        let number2 = parseInt(input2.value);
+        
+        result.value = number1 * number2;
+        
+      });
+      divide.addEventListener('click', () => {
+        let number1 = parseInt(input1.value);
+        let number2 = parseInt(input2.value);
+        
+        result.value = number1 / number2;
+        
+      });
+
+
 
     </script>
   </body>
