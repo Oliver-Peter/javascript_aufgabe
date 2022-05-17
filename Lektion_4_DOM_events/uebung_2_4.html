@@ -21,6 +21,16 @@
     <li>Hugo Simpson <strong>071 123 45 71</strong></li>
   </ul>
 
+  <formular>
+    <label>Vorname</label>
+    <input type="text" name="vorname" id="first">
+    <label>Name</label>
+    <input type="text" name="name" id="last">
+    <label>Alter</label>
+    <input type="text" name="alter" id="age">
+    <button>Hinzufügen</button>
+  </formular>
+
   <body>
     <script>
       /* Aufgabe:
@@ -33,6 +43,15 @@
          Zusatzaufgabe (wenn du Fertig bist): Bau auf jeder Zeile einen Button ein, mit dem du die Zeile löschen kannst.
          Sieh dir dazu event.target auf MDN an.
       */
+
+      let liste = document.querySelector("ul");
+
+      let vorname = document.querySelector('#first');
+      let nachname = document.querySelector('#last')
+      let alter = document.querySelector('#age');
+
+      let eintrag = document.createElement('li');
+
 
     </script>
   </body>
