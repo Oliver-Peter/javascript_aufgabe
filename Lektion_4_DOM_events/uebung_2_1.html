@@ -4,6 +4,8 @@
   </head>
   <body>
 
+    <input type="text" name="eingabe" placeholder="Text hier eingeben" id="input">
+
     <div id="keyup"></div>
     <div id="keydown"></div>
     <div id="change"></div>
@@ -22,6 +24,35 @@
        * Beste für deinen Zweck ist
        * Welcher Event ist der Beste für die Texteingabe eines Benutzers?
       */
+
+      let input = document.querySelector("#input");
+
+      input.addEventListener('keyup', function(event) {
+        document.querySelector("#keyup").innerHTML = event.target.value
+      });
+
+      input.addEventListener('keydown', function(event) {
+        document.querySelector("#keydown").innerHTML = event.target.value
+      });
+
+      input.addEventListener('change', function(event) {
+        document.querySelector("#change").innerHTML = event.target.value
+      });
+
+      input.addEventListener('input', function(event) {
+        document.querySelector("#input").innerHTML = event.target.value
+      });
+
+      input.addEventListener('blur', function(event) {
+        document.querySelector("#blur").innerHTML = event.target.value
+      });
+
+      input.addEventListener('focus', function(event) {
+        document.querySelector("#focus").innerHTML = event.target.value
+      });
+
+      //Meiner Meinung nach, ist change hier der am besten geignetste Event für eine Benutzereingabe.
+
 
 
     </script>
