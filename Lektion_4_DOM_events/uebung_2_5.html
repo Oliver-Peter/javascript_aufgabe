@@ -48,10 +48,13 @@
          {firstname: "Hugo", name: "Simpson", age: 10, sex: 'm'}
        ];
 
+       //main task
+
+
+       //Referenz auf die ul
        let liste = document.querySelector('#liste');
 
-
-
+       //Erzeugen und befüllen der einzelnen Listen Elemente innerhlab einer for-of Schlaufe
        for (char of simpsons) {
         let listElem = document.createElement('li');
         listElem.innerHTML = char.firstname + ' ' + char.name + ' ' + '(' + char.age + ')' + '<button>Enfernen</button>';
@@ -59,11 +62,17 @@
         console.log(listElem);
        }
 
+       //Mittels Event Delegation prüfen ob der click Event auf ein Element von Typ 'button' angewendet wurde
+       //Falls ja, soll sich das Elternelemtn selbst entfernen.
        liste.addEventListener('click', function (e) {
          if (event.target.matches('button')) {
            event.target.parentNode.remove();
          }
        });
+
+       //additional task
+
+
 
     </script>
   </body>
