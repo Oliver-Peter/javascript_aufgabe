@@ -48,6 +48,23 @@
          {firstname: "Hugo", name: "Simpson", age: 10, sex: 'm'}
        ];
 
+       let liste = document.querySelector('#liste');
+
+
+
+       for (char of simpsons) {
+        let listElem = document.createElement('li');
+        listElem.innerHTML = char.firstname + ' ' + char.name + ' ' + '(' + char.age + ')' + '<button>Enfernen</button>';
+        liste.appendChild(listElem);
+        console.log(listElem);
+       }
+
+       liste.addEventListener('click', function (e) {
+         if (event.target.matches('button')) {
+           event.target.parentNode.remove();
+         }
+       });
+
     </script>
   </body>
 </html>
