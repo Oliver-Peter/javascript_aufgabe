@@ -50,30 +50,39 @@
 
        //main task
 
-
        //Referenz auf die ul
        let liste = document.querySelector('#liste');
 
        //Erzeugen und befüllen der einzelnen Listen Elemente innerhlab einer for-of Schlaufe
        for (char of simpsons) {
         let listElem = document.createElement('li');
-        listElem.innerHTML = char.firstname + ' ' + char.name + ' ' + '(' + char.age + ')' + '<button>Enfernen</button>';
         liste.appendChild(listElem);
         console.log(listElem);
+        listElem.innerHTML = char.firstname + ' ' + char.name + ' ' + '(' + char.age + ')' + '<button id="entf">Enfernen</button>' + '<button id="up">↑</button>' + '<button id="down">↓</button>';
        }
 
        //Mittels Event Delegation prüfen ob der click Event auf ein Element von Typ 'button' angewendet wurde
        //Falls ja, soll sich das Elternelemtn selbst entfernen.
-       liste.addEventListener('click', function (e) {
-         if (event.target.matches('button')) {
+/*        liste.addEventListener('click', function (e) {
+         if (event.target.matches('#entf')) {
            event.target.parentNode.remove();
          }
-       });
+       }); */
 
        //additional task
+       //Listenelemente innerhalb der ul per Knopfdruck verschieben
 
+       liste.addEventListener('click', function (e) {
+         let li = e.target.parentNode;
+        if (e.target.matches('#up')) {
+           liste.insertBefore(li, li.previousElementSibling);
+         } else if (e.target.matches('#down')) {
+           liste.insertBefore(li.nextElementSibling, li);
+         } else if (event.target.matches('#entf')) {
+           event.target.parentNode.remove();
+         }
 
-
+       });
     </script>
   </body>
 </html>
