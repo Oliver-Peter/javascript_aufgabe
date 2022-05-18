@@ -28,7 +28,7 @@
     <input type="text" name="name" id="last">
     <label>Alter</label>
     <input type="text" name="alter" id="age">
-    <button>Hinzufügen</button>
+    <button id="submit">Bestätigen</button>
   </formular>
 
   <body>
@@ -44,13 +44,29 @@
          Sieh dir dazu event.target auf MDN an.
       */
 
-      let liste = document.querySelector("ul");
+      let liste = document.querySelector("#liste");
 
       let vorname = document.querySelector('#first');
       let nachname = document.querySelector('#last')
       let alter = document.querySelector('#age');
+      let btn = document.querySelector('#submit');
 
-      let eintrag = document.createElement('li');
+      
+
+      function hinzufügen() {
+        if (vorname.value == '' || nachname.value == '' || alter.value == '') {
+          alert("Bitte alle Felder ausfüllen.")
+          return;
+        }
+        let eintrag = document.createElement('li');
+        eintrag.innerHTML = vorname.value + ' ' + nachname.value + '  ' + alter.value;
+        liste.appendChild(eintrag);
+        vorname.value = '';
+        nachname.value = '';
+        alter.value = '';
+      }
+
+      btn.addEventListener('click', hinzufügen);
 
 
     </script>
