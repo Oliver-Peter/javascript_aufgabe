@@ -13,6 +13,11 @@
 
   <h1>Hallo NAME!</h1>
 
+  <input type="text" name="input" id="eingabe">
+  <input type="button" value="Speichern" id="speichern">
+
+
+
   <body>
     <script>
       /* Aufgabe:
@@ -28,8 +33,33 @@
        z.B. <h1>Hallo Pascal!</h1>
       */
 
+      //Schritt 1: Variablen für die Zwischenspeicherung der Eingabe und der DOM-Referrenzen definieren.
+      //SChritt 2: Function, welche den Wert des Eingabefeldes in das h1-Element sowie den localhost abspeichert
+      //Schritt 3: Eventlistener für den Button
+      //Schritt4: Eventlistener für das Neuladen der Seite, welche das h1-Element mit den Daten aus dem localhost befüllt.
+
+      let name; 
+      let inputField = document.querySelector('#eingabe');
+      let btn = document.querySelector('#speichern');
+      let title = document.querySelector('h1');
+
+      function eintragen() {
+        name = inputField.value;
+        title.innerHTML = name;
+        localStorage.setItem('name', name);
+
+      }
+
+      btn.addEventListener('click', eintragen);
+
+      window.addEventListener('load', () => {
+        let pastInput = localStorage.getItem('name');
+        title.innerHTML = pastInput;
+      })
+
+      
+      
+
     </script>
   </body>
 </html>
-
-
