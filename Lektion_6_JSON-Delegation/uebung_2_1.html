@@ -1,6 +1,5 @@
 <html>
   <head>
-    <meta charset="UTF-8">
     <style>
       * {
         margin: 10px;
@@ -11,17 +10,12 @@
     </style>
   </head>
 
-  <h1>Dynamische Liste</h1>
-
-  <ul id="liste">
-  </ul>
-
-  <input type="text" name="vorname" placeholder="Vorname" id="first">
-  <input type="text" name="nachname" placeholder="Nachname" id="last">
-  <input type="text" name="alter" placeholder="Alter" id="age">
-  <input type="button" value="Einfügen" id="add">
 
   <body>
+    <h1>Dynamische Liste</h1>
+
+    <ul id="liste">
+    </ul>
     <script>
       /* Aufgabe:
        * Erstelle per Javascript für jedes Mitglied der Simpsons einen
@@ -35,7 +29,7 @@
        * welche ebenfalls gelöscht werden können, nachdem sie
        * hinzugefügt wurden.
        *
-       * Tipps: Verwende für das Erstellen der Nodes die for of Schlaufe.
+       * Tipps: Verwende für das Erstellen der Nodes die for of funktion.
        *        Verwende den Delegate Ansatz
 
        Erwartetes Resultat:
@@ -52,40 +46,6 @@
 
       var simpsonJSON = '[{"firstname":"Bart","name":"Simpson","age":10,"sex":"m"},{"firstname":"Homer","name":"Simpson","age":36,"sex":"m"},{"firstname":"Lisa","name":"Simpson","age":8,"sex":"w"},{"firstname":"Marge","name":"Simpson","age":34,"sex":"w"},{"firstname":"Maggie","name":"Simpson","age":1,"sex":"w"},{"firstname":"Hugo","name":"Simpson","age":10,"sex":"m"}]';
 
-      let simpsons = JSON.parse(simpsonJSON);
-
-      let list = document.querySelector('#liste');
-      let firstname = document.querySelector('#first');
-      let lastname = document.querySelector('#last');
-      let age = document.querySelector('#age');
-      let addBtn = document.querySelector('#add');
-      
-      //ANCHOR default list Elements
-  
-      for(char of simpsons) {
-        let element = document.createElement('li');
-        element.innerHTML = char.firstname + ' ' + char.name + ' ' + '(' + char.age + ')' + '<button>X</button>';
-        list.appendChild(element);
-      }
-
-      //ANCHOR delete li by ul-button delegate
-
-      list.addEventListener('click', (event) => {
-        if (event.target.matches('button')) {
-          event.target.parentElement.remove();
-        }
-      });
-
-      //ANCHOR add more list-Elements
-
-      addBtn.addEventListener('click', fillList)
-
-
-      function fillList() {
-        let newChar = document.createElement('li');
-        newChar.innerHTML = firstname.value + ' ' + lastname.value + ' ' + '(' + age.value + ')' + '<button>X</button>';
-        list.appendChild(newChar);
-      }
     </script>
   </body>
 </html>

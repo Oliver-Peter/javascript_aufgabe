@@ -1,0 +1,121 @@
+<html>
+  <head></head>
+  <body>
+    <script>
+      /* Aufgabe:
+       * Nimm den unten aufgeführten mehrdimensionalen Array und gib nur die ELemente aus, die Zahlen sind.
+       * Benötigte Werkzeuge: Konsole, verschachtelte Schlaufen, If-Bedingung, Typeof.
+       * Überleg dir zuerst Schritt für Schritt, was du alles machen musst, um zum Ziel zu kommen und was du dafür benötigst.
+
+       * Erwartete Ausgabe auf der Konsole:
+          1
+          12
+          2
+          11
+          3
+          10
+          4
+          9
+          5
+          8
+          6
+          7
+          6
+          7
+          5
+          8
+          4
+          9
+          3
+          10
+          2
+          11
+          1
+          12
+
+       * Zusatzaufgabe (für schnellere):
+       * Wie kannst du die Aufgabe noch kürzer lösen? Studiere dazu filter(), map() auf MDN.
+       */
+
+      var zahlenUndBuchstaben = [
+        [1, "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", 12],
+        ["a", 2, "c", "d", "e", "f", "g", "h", "i", "j", 11, "l"],
+        ["a", "b", 3, "d", "e", "f", "g", "h", "i", 10, "k", "l"],
+        ["a", "b", "c", 4, "e", "f", "g", "h", 9, "j", "k", "l"],
+        ["a", "b", "c", "d", 5, "f", "g", 8, "i", "j", "k", "l"],
+        ["a", "b", "c", "d", "e", 6, 7, "h", "i", "j", "k", "l"],
+        ["a", "b", "c", "d", "e", 6, 7, "h", "i", "j", "k", "l"],
+        ["a", "b", "c", "d", 5, "f", "g", 8, "i", "j", "k", "l"],
+        ["a", "b", "c", 4, "e", "f", "g", "h", 9, "j", "k", "l"],
+        ["a", "b", 3, "d", "e", "f", "g", "h", "i", 10, "k", "l"],
+        ["a", 2, "c", "d", "e", "f", "g", "h", "i", "j", 11, "l"],
+        [1, "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", 12],
+      ];
+
+      //Lösungsansatz 1:
+
+      /* for (let i = 0; i < zahlenUndBuchstaben.length; i++) {
+        let zahlen = zahlenUndBuchstaben[i];
+        for(let n = 0; n < zahlen.length; n++) {
+          if(typeof zahlen[n] === typeof 1) { //Gibt es einen direkt mit "number" zu verlgeichen?
+            console.log(zahlen[n]);
+          }
+        }
+      } */
+
+      // Lösungsansatz 2:
+
+  /*     for (let i = 0; i < zahlenUndBuchstaben.length; i++) {
+        let zahlen = zahlenUndBuchstaben[i];
+        for(let n = 0; n < zahlen.length; n++) {
+          if(typeof zahlenUndBuchstaben[i][n] === typeof 1)
+          console.log(zahlenUndBuchstaben[i][n]);
+        }
+      } */
+
+      // Zusatzaufgabe:
+      //Variante 1:
+
+/*       for(let i in zahlenUndBuchstaben) {
+          let zahlen = zahlenUndBuchstaben[i];
+          let onlyNumbers = zahlen.filter(function(zahl) {
+            return typeof zahl === typeof 1;
+          })
+          console.log(onlyNumbers);
+      } */
+
+      //Variante 2:
+        
+/*          for(zahlen of zahlenUndBuchstaben) {
+          let onlyNumbers = zahlen.filter(zahl => {
+            return typeof zahl === "number";
+          });
+          
+           for(number of onlyNumbers) {
+            console.log(number);
+          } */ 
+       
+
+      //Variante mit map() und filter() möglich?
+      
+      zahlenUndBuchstaben
+        .map(zahlen => {
+          zahlen
+          .filter(zahl => typeof zahl === "number")
+          .map(zahl => console.log(zahl))
+        });
+
+     
+
+    
+
+
+
+    
+
+
+
+
+    </script>
+  </body>
+</html>
