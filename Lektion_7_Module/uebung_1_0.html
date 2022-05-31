@@ -27,13 +27,14 @@
     *
     */
     var parentList = document.querySelector('#parent-list');
-    var textInput = document.querySelector('#text-input')
+    var textInput = document.querySelector('#text-input');
+
     function removeItem(event) {
-      event.target.parentNode.removeChild(event.target);
+      event.target.parentNode.remove();
     }
     function addItem() {
       var newItem = document.createElement('li');
-      newItem.innerText = textInput.value + ' <button>Löschen</button>';
+      newItem.innerHTML = textInput.value + ' <button>Löschen</button>';
       parentList.appendChild(newItem);
       // Neuen hinzufügen Button anhängen
       newItem.querySelector('button').addEventListener('click', removeItem);
@@ -44,8 +45,8 @@
     document.querySelector('#add-item').addEventListener('click', addItem);
 
     // Alle löschen Buttons anbinden
-    document.querySelectorAll('li .button').forEach(function (elem) {
-      eIem.addEventListener('click', removeItem);
+    document.querySelectorAll('li').forEach(function (elem) {
+      elem.addEventListener('click', removeItem);
     });
 
   </script>
