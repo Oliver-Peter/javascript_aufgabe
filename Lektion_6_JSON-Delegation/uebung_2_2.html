@@ -56,27 +56,28 @@
                   <li>Später Hinzugefügt (99) <button>Entfernen</button></li>
                </ul>
               */
-
+            //SECTION Array und Variablen
             var simpsonJSON =
               '[{"firstname":"Bart","name":"Simpson","age":10,"sex":"m"},{"firstname":"Homer","name":"Simpson","age":36,"sex":"m"},{"firstname":"Lisa","name":"Simpson","age":8,"sex":"w"},{"firstname":"Marge","name":"Simpson","age":34,"sex":"w"},{"firstname":"Maggie","name":"Simpson","age":1,"sex":"w"},{"firstname":"Hugo","name":"Simpson","age":10,"sex":"m"}]';
-
-            
             let simpsons = [];
-                
             let newCharacter = {};
             let list = document.querySelector("#liste");
-
+            //!SECTION
+            
+            //SECTION Render Funktion
             function render() {
+              //NOTE gesamter Inhalt der Liste leeren
               list.innerHTML = "";
+              //NOTE Inhalte im localStorage prüfen und setzten
               let localChars = localStorage.getItem("characters");
               if (localChars === "[]") {
-                confirm("Alle Einträge wurden nun gelöscht.");
-              } else if (localChars === null) {
                 localStorage.setItem("characters", simpsonJSON);
                 simpsons = JSON.parse(simpsonJSON);
               } else {
                 simpsons = JSON.parse(localChars);
               }
+
+              //NOTE 
               //mit for-of:
               // for (let [index, char] of simpsons.entries()) { ... }
               //oder
@@ -84,31 +85,82 @@
               //Ansonsten würde die index-Zahl in der Variablen "char" gespeichert und das eigentliche Objekt in die Variable "index"!
               simpsons.forEach((char, index) => {
                 let li = document.createElement("li");
-                li.innerHTML = `${char.firstname} ${char.name} (${char.age}) <button class=delete data-index=${index}>x</button>`;
+
+                //NOTE Render: Erstellung der Verschiebe-Buttons
+
+                let upBtn = '';
+                let downBtn = '';
+
+                if (index !== 0) {
+                  upBtn = `<button class="up" data-index=${index}>UP</button>`
+                }
+                if (index !== simpsons.length - 1) {
+                  downBtn = `<button class="down" data-index=${index}>DOWN</button>`
+                }
+
+                //NOTE REnder: Listen Element befüllen un der Liste hinzufügen.
+                li.innerHTML = `${char.firstname} ${char.name} (${char.age}) <button class=delete data-index=${index}>x</button> ${upBtn} ${downBtn}`;
                 list.appendChild(li);
+
+
               });
             }
 
+            //NOTE initiales Rendern
             render();
 
-            //Lösungsansatz
+            //!SECTION
+
+            
+
+            //NOTE Eventlistener für ListItem-Buttons
             //mittels delegate Ansatz li-Elemente mit button löschen
             //gelöschtes Element auch aus dem Array entfernen
             //Im LokalStorage altes Array durch das veränderte ersetuem
 
             list.addEventListener("click", (event) => {
-              if (event.target.matches("button")) {
+              if (event.target.matches("button.delete")) {
                 remove(event.target.dataset.index);
+              } else if (event.target.matches('button.up')) {
+                  goUp(event.target.dataset.index);
+              } else if (event.target.matches('button.down')) {
+                goDown(event.target.dataset.index);
               }
             });
+
+            //SECTION Delete und Verschiebe Funktionen
 
             function remove(index) {
               simpsons.splice(index, 1);
               localStorage.setItem("characters", JSON.stringify(simpsons));
-              console.log(simpsons);
               render();
-            }
+            };
 
+            function goUp(index) {
+              let removedArray = simpsons.splice(index, 1);
+              let draggedChar = removedArray[0];
+              let newIndex = parseInt(index) - 1;
+              newIndex = Math.max(0, newIndex);
+              simpsons.splice(newIndex, 0, draggedChar);
+              localStorage.setItem('characters', JSON.stringify(simpsons));
+              render();
+            };
+
+            function goDown(index) {
+              let removedArray = simpsons.splice(index, 1);
+              console.log(removedArray);
+              let draggedChar = removedArray[0];
+              let newIndex = parseInt(index) + 1;
+              console.log(newIndex);
+              simpsons.splice(newIndex, 0, draggedChar);
+              localStorage.setItem('characters', JSON.stringify(simpsons));
+              render();
+            };
+            //!SECTION
+
+
+            //SECTION Code für Input-Felder
+            
             //Referenzen für die inputfelder erstellen
             let first = document.querySelector("#firstname");
             let last = document.querySelector("#lastname");
@@ -141,6 +193,8 @@
               localStorage.setItem("characters", JSON.stringify(simpsons));
               render();
             }
+            //!SECTION
+
     </script>
   </body>
 </html>
