@@ -44,12 +44,52 @@
       var todos = [];
 
       function getAufrufStarten() {
-        // Dein Code hier
+        var request = new XMLHttpRequest();
+
+        request.open('GET', 'http://localhost:3002/todos', true);
+
+        request.onload = function () {
+          if(request.status >= 200 && request.status < 400) {
+            console.log('get hat funktionert');
+            todos = JSON.parse(request.responseText);
+            console.log(todos);
+            render();
+          } else {
+            console.log('Daten konnten nicht verarbeitet werden');
+          }
+        }
+
+        request.error = function () {
+          console.log('Verbindung zum Server fehlgeschlagen');
+        }
+
+        request.send();
+
       }
 
+      /* var data = []; */
+
       function postAufrufStarten() {
-        // Dein Code hier
+        var request = new XMLHttpRequest();
+        request.open('POST', 'http://localhost:3002/todos', true);
+        request.setRequestHeader("Content-Type", "application/json");
+        
+        
+        request.onload = function () {
+          if(request.status >= 200 && request.status < 400) {
+            /* data = JSON.stringify(todos); */ /* NOTE Falsch! Die zu postenden Daten müssen noch vor dem onload bearbeitet werden */
+          } else {
+            console.log('Daten konnten nicht verarbeitet werden');
+          }
+        }
+
+        request.onerror = function () {
+          console.log('Verbindung zum Server fehlgeschlagen');
+        }
+
+        request.send(JSON.stringify(todos)); //Hier werden die Daten dem Backend schlieslich übergeben
       }
+
 
       function addItem() {
         todos.push(
@@ -66,7 +106,7 @@
       function render() {
         var liste = document.querySelector('#liste');
         liste.innerHTML = ''; // alte Liste löschen
-        todos.forEach(function (elem, index) {
+        todos.forEach( function (elem, index) {
           var li = document.createElement('li'); // Neues Element erzeugen
           li.innerHTML = elem.firstname + ' ' + elem.name + ' <button>Löschen</button>'; // Daten abfüllen
           li.id = index; // Id setzen (später wichtig für's löschen)

@@ -48,7 +48,7 @@
             console.log('Fehler beim Laden der Daten');
           }
         }
-        request.error = function () {
+        request.onerror = function () {
           console.log('Server nicht erreicht');
         }
 
