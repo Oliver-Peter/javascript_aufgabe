@@ -15,7 +15,8 @@
 
     <button id="execute-request">neues Gif fetchen</button>
     <div id="container"></div>
-    <script>
+    <script type="module">
+      import * as Tools from "./tools.js";
       /* Aufgabe:
        * Erstelle eine Funktion genannt getGif, welche beim klick auf den Button ausgeführt wird.
        * Verwende dazu die fetch Methode mit Promises. Also kein XMLHttpRequest mehr - die Zeiten sind vorbei.
@@ -28,17 +29,36 @@
        * erstelle im DOM ein neues IMG Element mit der URL des erhaltenen Gifs als src Wert und
        * setzte das erstelle IMG Element in das #container div.
        *
-       * Tipp: Die URL des Bildes befindet sich unter data.image_url in der JSON Antwort.
+       * Tipp: Die URL des Bildes befindet sich unter data.images.original.url in der JSON Antwort.
        *       Die JSON Antwort musst du natürlich erst umwandeln, verwende dazu aber nicht JSON.parse().
        * Erwartetes Resultat:
         - Bei jedem klick auf "neues Gif laden" wird ein neues Bild angezeigt
       */
-      document.querySelector('#execute-request').addEventListener('click', getGif);
+      document.querySelector('#execute-request').addEventListener('click', Tools.delegate('button', getGif)); 
+      //Ich hätte hier die Funktion getGif() direkt aufrufen können. Das delegate Tool ist für Uebung_1_1 gedacht. :-)
+      
       var container = document.querySelector('#container');
 
       async function getGif() {
-        // Dein Code hier
+        try {
+          const response = await fetch("https://api.giphy.com/v1/gifs/random?api_key=vteZ9Q3wIUEvN7heLsE7bazziLfqxerV&limit=1&tag=puppy");
+          let gifObj =  await response.json();
+          let gifUrl = gifObj.data.images.original.url;
+          render(gifUrl);
+        } catch (err) {
+          console.error(err);
+        }
       }
+
+     function render(url) {
+      container.innerHTML = "";
+      let img = document.createElement("img");
+      img.src = url;
+      container.appendChild(img);
+
+     }
+
+
 
     </script>
   </body>

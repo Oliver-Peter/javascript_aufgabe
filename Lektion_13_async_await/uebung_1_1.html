@@ -43,11 +43,37 @@
       var todos = [];
 
       async function getAufrufStarten() {
-        // Hier mit Fetch get machen
+        try {
+          const response = await fetch("http://localhost:3002/todos");
+          todos = await response.json();
+          render()
+
+        } catch (e) {
+          console.error(e);
+        }
+        
       }
 
+     
+
       async function postAufrufStarten() {
-        // Hier mit Fetch post machen
+        try {
+          const response = await fetch ("http://localhost:3002/todos",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(todos)
+          });
+
+          todos = await response.json();
+          console.log(todos);
+
+          
+        } catch (error) {
+          console.error(error);
+        }
       }
 
       function addItem() {
