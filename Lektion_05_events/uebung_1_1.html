@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      * {
+        margin: 10px;
+        padding: 5px;
+        font-family: "Helvetica Neue", sans-serif;
+        font-weight: 300;
+      }
+    </style>
+  </head>
+
+  <h1>Simpsons JSON</h1>
+
+  <ul id="liste"></ul>
+
+  <body>
+    <script>
+      /* Aufgabe:
+       * Erstelle per Javascript für jedes Mitglied der Simpsons einen
+       * Eintrag in der Liste #liste mit ihrem Vor-, Nachnamen und Alter.
+       *
+       * Die Daten musst du im JSON Format einlesen.
+
+       Erwartetes Resultat:
+       <ul id="liste">
+          <li>Bart Simpson (10)</li>
+          <li>Homer Simpson (36)</li>
+          <li>Lisa Simpson (8)</li>
+          <li>Marge Simpson (34)</li>
+          <li>Maggie Simpson (1)</li>
+          <li>Hugo Simpson (10)</li>
+       </ul>
+      */
+
+      var simpsonJSON =
+        '[{"firstname":"Bart","name":"Simpson","age":10,"sex":"m"},{"firstname":"Homer","name":"Simpson","age":36,"sex":"m"},{"firstname":"Lisa","name":"Simpson","age":8,"sex":"w"},{"firstname":"Marge","name":"Simpson","age":34,"sex":"w"},{"firstname":"Maggie","name":"Simpson","age":1,"sex":"w"},{"firstname":"Hugo","name":"Simpson","age":10,"sex":"m"}]';
+
+      //Schritt 1: JSON String wieder in ein Objekt-Array konvertieren
+      //Schritt 2: Durch jedes Objekt im Array iterieren und in ein Listenelement speichern, welches sogleich der ul hinzugefügt wird.
+      //
+      let simpsons = JSON.parse(simpsonJSON);
+
+      let list = document.querySelector("#liste");
+
+      for (char of simpsons) {
+        let li = document.createElement("li");
+        li.innerHTML =
+          char.firstname + " " + char.name + " " + "(" + char.age + ")";
+        liste.appendChild(li);
+      }
+    </script>
+  </body>
+</html>

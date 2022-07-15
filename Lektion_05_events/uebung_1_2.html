@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      * {
+        margin: 10px;
+        padding: 5px;
+        font-family: "Helvetica Neue", sans-serif;
+        font-weight: 300;
+      }
+    </style>
+  </head>
+
+  <h1>Hallo NAME!</h1>
+
+  <input type="text" name="input" id="eingabe">
+  <input type="button" value="Speichern" id="speichern">
+
+
+
+  <body>
+    <script>
+      /* Aufgabe:
+       * Erstelle ein Eingabefeld und einen Button "Speichern".
+       * Wenn du auf speichern klickst, wird der Name im H1 durch
+       * die eingabe ersetzt und der eingegebene Name wird im Browser gespeichert.
+       * Wenn du das Fenster neu lädst, soll der gleiche Name
+       * wie vorher eingegeben wurde, wieder angezeigt werden.
+
+       Erwartetes Resultat:
+       Du trägst deinen Namen ein und klickst auf speichern.
+       Vor & Nach dem Reload erscheint dein Name im H1 Titel
+       z.B. <h1>Hallo Pascal!</h1>
+      */
+
+      //Schritt 1: Variablen für die Zwischenspeicherung der Eingabe und der DOM-Referrenzen definieren.
+      //SChritt 2: Function, welche den Wert des Eingabefeldes in das h1-Element sowie den localhost abspeichert
+      //Schritt 3: Eventlistener für den Button
+      //Schritt4: Eventlistener für das Neuladen der Seite, welche das h1-Element mit den Daten aus dem localhost befüllt.
+
+      let name; 
+      let inputField = document.querySelector('#eingabe');
+      let btn = document.querySelector('#speichern');
+      let title = document.querySelector('h1');
+
+      function eintragen() {
+        name = inputField.value;
+        title.innerHTML = name;
+        localStorage.setItem('name', name);
+      }
+
+      btn.addEventListener('click', eintragen);
+
+      window.addEventListener('load', () => {
+        let pastInput = localStorage.getItem('name');
+        title.innerHTML = pastInput;
+      })
+
+      
+      
+
+    </script>
+  </body>
+</html>

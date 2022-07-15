@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+
+    <input id="alert" type="button" value="Alert">
+    <input id= "log" type="button" value="Log">
+    <script>
+      /* Aufgabe:
+       * Erstelle 2 Buttons welche jeweils beim Klick eine Funktion auslösen.
+       * Der erste Button mit dem Text "Alert" soll eine alert() Box mit dem Text "Das ist ein Alert" auslösen
+       * Der zweite Butotn mit dem Text "Log" soll etwas auf der Konsole ausgeben
+       */
+
+       let alertBtn = document.querySelector("#alert");
+       let logBtn = document.querySelector("#log");
+
+       alertBtn.addEventListener('click', () => {
+         alert("Das ist ein Alert");
+       })
+
+       logBtn.addEventListener('click', () => {
+         console.log("Das ist ein consolen log");
+       })
+
+       
+
+
+
+
+    </script>
+  </body>
+</html>
+
+
